@@ -1,0 +1,106 @@
+<div class="container">
+  <h2>Optimism Pay Receipt Generator</h2>
+  
+  <textarea [(ngModel)]="prompt" rows="5" placeholder="Type your instruction here..."></textarea>
+  <button (click)="generateFromPrompt()" [disabled]="loading">
+    {{ loading ? 'Generating...' : 'Generate Receipt' }}
+  </button>
+  
+  <button *ngIf="receiptGenerated" (click)="showReceipt = true">
+    Show Receipt
+  </button>
+
+  <button *ngIf="receiptGenerated" (click)="downloadReceiptAsImage()">
+  Download Receipt as Image
+    </button>
+
+    <button *ngIf="receiptGenerated" (click)="downloadReceiptAsPDF()">
+    Download Receipt as PDF
+    </button>
+
+  
+  <div *ngIf="showReceipt" class="receipt-container">
+    <div class="watermark">
+      <div class="watermark-text" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+        OPTIMISMPAY.COM OPTIMISMPAY.COM OPTIMISMPAY.COM OPTIMISMPAY.COM OPTIMISMPAY.COM OPTIMISMPAY.COM
+      </div>
+    </div>
+    
+    <div class="receipt-content">
+      <div class="receipt-header">
+        <div class="logo">
+          <div class="lotus-icon">
+            <div class="lotus-petal petal-1"></div>
+            <div class="lotus-petal petal-2"></div>
+            <div class="lotus-petal petal-3"></div>
+            <div class="lotus-petal petal-4"></div>
+            <div class="petal-center"></div>
+          </div>
+          <div class="title-text">
+            <div class="brand-name">OPTIMISM PAY</div>
+            <div class="tagline">PAYMENT AGGREGATOR</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="success-message">
+        <div class="success-icon">✓</div>
+        <div class="success-text">PAYMENT SUCCESSFUL</div>
+      </div>
+      
+      <hr class="receipt-divider" />
+      
+      <div class="receipt-details">
+        <div class="details-row">
+          <div class="detail-item">
+            <div class="detail-label">Beneficiary Name:</div>
+            <div class="detail-value">{{ data.name }}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Account Number:</div>
+            <div class="detail-value">{{ data.accountNumber }}</div>
+          </div>
+        </div>
+        
+        <div class="details-row">
+          <div class="detail-item">
+            <div class="detail-label">IFSC:</div>
+            <div class="detail-value">{{ data.ifsc }}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Bank:</div>
+            <div class="detail-value">{{ data.bank }}</div>
+          </div>
+        </div>
+        
+        <div class="details-row">
+          <div class="detail-item">
+            <div class="detail-label">Amount:</div>
+            <div class="detail-value">{{ data.amount }} INR</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Payment Mode:</div>
+            <div class="detail-value">{{ data.mode }}</div>
+          </div>
+        </div>
+        
+        <div class="details-row">
+          <div class="detail-item">
+            <div class="detail-label">Transaction ID:</div>
+            <div class="detail-value">{{ transactionId }}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Date:</div>
+            <div class="detail-value">{{ currentDate }}</div>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="receipt-divider" />
+      
+      <div class="receipt-footer">
+        This is a system generated confirmation and does not require signature.
+      </div>
+    </div>
+  </div>
+</div>
