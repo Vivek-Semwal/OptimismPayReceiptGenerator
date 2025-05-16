@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 
 import { environment } from '../../environments/environment';
-const apiKey = environment.openaiApiKey;
+const apiKey = environment.apiKey;
 
 @Injectable({
   providedIn: 'root'
